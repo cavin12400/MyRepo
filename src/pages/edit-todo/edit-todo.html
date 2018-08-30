@@ -1,0 +1,29 @@
+<ion-header>
+    <ion-navbar>
+      <ion-title>Editing:{{todoEdit.title}} </ion-title>
+    </ion-navbar>
+  </ion-header>
+  <ion-content padding>
+      <form [formGroup]="formGroup" (ngSubmit)="saveTodo(formGroup.value)" >
+          <ion-item>
+            <ion-label stacked>Title</ion-label>
+            <ion-input type="text" name="title" [(ngModel)]="title" formControlName="title" value="{{todoEdit.title}}" required clearInput></ion-input>
+            <div class='alert' *ngIf="!formGroup.controls['title'].valid && formGroup.controls['title'].touched">
+              {{titleAlert}}
+            </div>
+          </ion-item>
+          <ion-item>
+              <ion-label stacked>Description</ion-label>
+              <ion-textarea type="text" name="content" [(ngModel)]="content" formControlName="content" value="{{todoEdit.content}}" required clearInput></ion-textarea>
+              <div class='alert' *ngIf="!formGroup.controls['content'].valid && formGroup.controls['content'].touched">
+                {{contentAlert}}
+              </div>
+          </ion-item>
+          <ion-item>
+              <ion-label stacked>Date</ion-label>
+              <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="date" formControlName="date"  >{{todoEdit.date}}</ion-datetime>
+          </ion-item>
+          <button ion-button type="submit" block (click)="deleteTodo(todoEdit.createDate)" [disabled]="!formGroup.valid">Save Changes</button>
+        </form>
+  </ion-content>
+  

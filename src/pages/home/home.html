@@ -1,0 +1,28 @@
+<div id="custom-overlay" [style.display]="splash ? 'flex': 'none'">
+  <div class="flb">
+    <div class="Aligner-item Aligner-item--top"></div>
+    <img src="assets/logo.png">
+    <div class="Aligner-item Aligner-item--bottom"></div>
+  </div>
+</div>
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      TODO LIST
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <button ion-item *ngFor="let todo of todos | async" (click)="getTodo(todo.createDate)">
+      <span class="date">{{todo.date}}</span>
+      {{todo.title}}
+    </button>
+  </ion-list>
+</ion-content>
+<ion-footer>
+    <button ion-button color="secondary" block (click)="addTodo()">
+       Add Todo
+    </button>
+</ion-footer>
